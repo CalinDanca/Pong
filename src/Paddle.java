@@ -2,22 +2,22 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
-public class Paddle implements KeyListener {
+public class Paddle{
     ArrayList<Integer> moveDirection = new ArrayList<>();
     int x;
     int y;
     int Player;
-    Paddle(int Player, int x){
+    Paddle(int Player, int x, int y){
         this.Player = Player;
         this.x = x;
-        y = 1000/2;
+        this.y = (int)((y*0.5) - 50);
     }
-    public void keyTyped(KeyEvent e) {}
 
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
         if(Player ==1){
             if (key == KeyEvent.VK_W) {
+                System.out.println(key);
                 AddOrRemoveDirection(key , 1);
             }
             if (key == KeyEvent.VK_S) {
@@ -54,7 +54,7 @@ public class Paddle implements KeyListener {
         }
     }
 
-    public void paint(Graphics g)
+    public void draw(Graphics g)
     {
         // adding specifications
         if(Player ==1){ g.setColor(Color.red);}
@@ -87,10 +87,10 @@ public class Paddle implements KeyListener {
     public void move(){
         for(int key:moveDirection){
             if (key == KeyEvent.VK_W || key == KeyEvent.VK_UP){
-                y--;
+                y = y -5;
             }
             else{
-                y++;
+                y = y +5;
             }
         }
     }
